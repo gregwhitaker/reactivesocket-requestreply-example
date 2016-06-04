@@ -26,6 +26,7 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.reactivesocket.Frame;
 import io.reactivesocket.Payload;
 import io.reactivesocket.RequestHandler;
 import io.reactivesocket.netty.tcp.server.ReactiveSocketServerHandler;
@@ -33,6 +34,7 @@ import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 
 /**
  * Server that receives and replies to messages.
@@ -96,7 +98,18 @@ public class Server {
                     return new Publisher<Payload>() {
                         @Override
                         public void subscribe(Subscriber<? super Payload> s) {
+                            s.onNext(new Payload() {
+                                @Override
+                                public ByteBuffer getData() {
+                                    System.out.println("Server Sent: SUP");
+                                    return ByteBuffer.wrap(("SUP").getBytes());
+                                }
 
+                                @Override
+                                public ByteBuffer getMetadata() {
+                                    return Frame.NULL_BYTEBUFFER;
+                                }
+                            });
                         }
                     };
                 }).build();
