@@ -22,7 +22,7 @@ package com.github.gregwhitaker.requestreply;
 public class ExampleRunner {
 
     /**
-     * Main entry-point of the example application that starts both the server and the client.
+     * Main entry-point for this example.  This starts the server and the client application.
      *
      * @param args command line arguments
      * @throws Exception
