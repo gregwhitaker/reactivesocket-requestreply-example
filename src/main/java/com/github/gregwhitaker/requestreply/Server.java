@@ -16,5 +16,21 @@
 
 package com.github.gregwhitaker.requestreply;
 
+import java.net.InetSocketAddress;
+
 public class Server {
+    private final InetSocketAddress bindAddress;
+
+    public static void main(String... args) {
+        Server server = new Server(new InetSocketAddress("localhost", 8080));
+        server.start();
+    }
+
+    public Server(InetSocketAddress bindAddress) {
+        this.bindAddress = bindAddress;
+    }
+
+    private void start() {
+
+    }
 }

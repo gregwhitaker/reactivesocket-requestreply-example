@@ -16,5 +16,21 @@
 
 package com.github.gregwhitaker.requestreply;
 
+/**
+ * Runs the reactivesocket request/reply example.
+ */
 public class ExampleRunner {
+
+    /**
+     * Main entry-point of the example application that starts both the server and the client.
+     *
+     * @param args command line arguments
+     * @throws Exception
+     */
+    public static void main(String... args) throws Exception {
+        Server.main();
+        Client.main();
+
+        Thread.currentThread().join();
+    }
 }
